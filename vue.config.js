@@ -58,6 +58,21 @@ module.exports = {
     hot: true, // 开启热加载
     hotOnly: false,
     proxy: null, // 设置代理
+    /* 使用代理 */
+    proxy: { // string | Object
+      // '/api': {
+     [process.env.VUE_APP_API]:{
+          // target: 'http://www.web-jshtml.cn/productapi',/* 目标代理服务器地址 */
+          target: 'http://localhost:62815/productApi',/* 目标代理服务器地址 */
+          changeOrigin: true,/* 允许跨域 */
+          pathRewrite: {
+            // '^/api': '' //替换
+            ['^' + process.env.VUE_APP_API]: '' // es5
+            // [`^${process.env.VUE_APP_API}`]: '' // es5
+        }
+      }
+    },  
+
     overlay: {
       // 全屏模式下是否显示脚本错误
       warnings: true,
